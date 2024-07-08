@@ -1,7 +1,7 @@
 const rootEl = document.getElementById("root");
-// const searchBtn = document.querySelector("header div:nth-child(2) button");
 const searchForm = document.querySelector("header div:nth-child(2) form");
 const inputSearch = document.getElementById("inputSearch");
+const sortedPrice = document.getElementById("sort");
 
 const products = [
   {
@@ -88,27 +88,7 @@ const render = (elToRenderIn, objArr, createCard) => {
   elToRenderIn.innerHTML = "";
   objArr.map((el) => addContent(elToRenderIn, createCard(el)));
 };
-
 render(rootEl, products, createCardEl);
-
-// const handleSearchProducts = () => {
-//   const searchTerm = inputSearch.value;
-//   const filteredArr = products.filter((product) =>
-//     product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-//   );
-//   render(rootEl, filteredArr, createCardEl);
-// };
-
-// searchBtn.addEventListener("click", handleSearchProducts);
-
-const handleSearchInput = (e) => {
-  const searchTerm = e.target.value;
-  const filteredArr = products.filter((product) =>
-    product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
-  );
-  render(rootEl, filteredArr, createCardEl);
-};
-// inputSearch.addEventListener("input", handleSearchInput);
 
 const handleSearchOnSubmit = (e) => {
   e.preventDefault();
@@ -121,3 +101,17 @@ const handleSearchOnSubmit = (e) => {
 };
 
 searchForm.addEventListener("submit", handleSearchOnSubmit);
+
+const handleSort = (e) => {
+  const value = e.target.value;
+  if (value === "h-l") {
+    const sortedArr = products.sort((a, b) => b.price - a.price);
+    render(rootEl, sortedArr, createCardEl);
+  }
+  if (value === "l-h") {
+    const sortedArr = products.sort((a, b) => a.price - b.price);
+    render(rootEl, sortedArr, createCardEl);
+  }
+};
+
+sortedPrice.addEventListener("change", handleSort);
