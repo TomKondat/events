@@ -66,8 +66,31 @@ const products = [
     image: "https://cdn.pixabay.com/photo/2018/07/21/09/17/cat-3552143_150.jpg",
   },
 ];
-let cart = [];
 let filteredArr = [...products];
+let shoppingCart = [];
+
+const handleAddToCart = (e) => {
+  const id = e.target.id;
+  //update quantity
+  let alreadyInCart = false;
+  shoppingCart = shoppingCart.map((product) => {
+    if (product.id === id) {
+      product.quantity++;
+      alreadyInCart = true;
+    }
+    return product;
+  });
+  if (alreadyInCart) {
+    // console.log(shoppingCart);
+    return;
+  }
+  //fint if exsist
+  const product = products.find((product) => product.id === id);
+  const cartProduct = { ...product };
+  cartProduct.quantity = 1;
+  shoppingCart.push(product);
+  console.log(shoppingCart);
+};
 
 const createCardEl = (productObj) => {
   const cardEl = document.createElement("div");
@@ -79,27 +102,14 @@ const createCardEl = (productObj) => {
   cardEl.innerHTML += `<div class="card-body">
          <h5 class="card-title">${productObj.name}</h5>
         <p class="card-text">Price ${productObj.price}</p>
-        <button id="productBtn" class="btn btn-primary">Buy ${productObj.name} now!</button>
        </div>`;
 
-  const addTocartBtn = cardEl.querySelector(`#productBtn`);
-
-  const handleAddToCart = () => {
-    let found = false;
-    for (let i = 0; i < cart.length; i++) {
-      if (cart[i].id === productObj.id) {
-        cart[i].quantity++;
-        found = true;
-        break;
-      }
-    }
-    if (!found) {
-      cart.push(productObj);
-      productObj.quantity = 1;
-    }
-    console.log(cart);
-  };
+  const addTocartBtn = document.createElement("button");
+  addTocartBtn.className = "btn btn-primary";
+  addTocartBtn.id = productObj.id;
+  addTocartBtn.textContent = `Buy ${productObj.name} now!`;
   addTocartBtn.addEventListener("click", handleAddToCart);
+  cardEl.append(addTocartBtn);
 
   return cardEl;
 };
