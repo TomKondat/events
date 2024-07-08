@@ -66,6 +66,9 @@ const products = [
     image: "https://cdn.pixabay.com/photo/2018/07/21/09/17/cat-3552143_150.jpg",
   },
 ];
+let cart = [];
+let filteredArr = [...products];
+
 const createCardEl = (productObj) => {
   const cardEl = document.createElement("div");
   cardEl.className = "card";
@@ -76,8 +79,28 @@ const createCardEl = (productObj) => {
   cardEl.innerHTML += `<div class="card-body">
          <h5 class="card-title">${productObj.name}</h5>
         <p class="card-text">Price ${productObj.price}</p>
-        <a href="#" class="btn btn-primary">Buy ${productObj.name} now!</a>
+        <button id="productBtn" class="btn btn-primary">Buy ${productObj.name} now!</button>
        </div>`;
+
+  const addTocartBtn = cardEl.querySelector(`#productBtn`);
+
+  const handleAddToCart = () => {
+    let found = false;
+    for (let i = 0; i < cart.length; i++) {
+      if (cart[i].id === productObj.id) {
+        cart[i].quantity++;
+        found = true;
+        break;
+      }
+    }
+    if (!found) {
+      cart.push(productObj);
+      productObj.quantity = 1;
+    }
+    console.log(cart);
+  };
+  addTocartBtn.addEventListener("click", handleAddToCart);
+
   return cardEl;
 };
 
@@ -92,26 +115,24 @@ render(rootEl, products, createCardEl);
 
 const handleSearchOnSubmit = (e) => {
   e.preventDefault();
-  console.log(e);
   const searchTerm = e.target.children[0].value;
-  const filteredArr = products.filter((product) =>
+  filteredArr = products.filter((product) =>
     product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
   );
   render(rootEl, filteredArr, createCardEl);
 };
 
-searchForm.addEventListener("submit", handleSearchOnSubmit);
-
 const handleSort = (e) => {
   const value = e.target.value;
   if (value === "h-l") {
-    const sortedArr = products.sort((a, b) => b.price - a.price);
-    render(rootEl, sortedArr, createCardEl);
+    filteredArr.sort((a, b) => b.price - a.price);
+    render(rootEl, filteredArr, createCardEl);
   }
   if (value === "l-h") {
-    const sortedArr = products.sort((a, b) => a.price - b.price);
-    render(rootEl, sortedArr, createCardEl);
+    filteredArr.sort((a, b) => a.price - b.price);
+    render(rootEl, filteredArr, createCardEl);
   }
 };
 
+searchForm.addEventListener("submit", handleSearchOnSubmit);
 sortedPrice.addEventListener("change", handleSort);
