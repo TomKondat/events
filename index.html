@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
+
     <title>Document</title>
   </head>
   <body>
@@ -13,8 +14,10 @@
         <h1>Shoppi</h1>
       </div>
       <div>
-        <input type="text" id="inputSearch" placeholder="search here..." />
-        <button>Search🔎</button>
+        <form>
+          <input type="text" id="inputSearch" placeholder="search here..." />
+          <input type="submit" hidden />
+        </form>
       </div>
     </header>
     <section id="root"></section>

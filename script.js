@@ -1,6 +1,7 @@
 const rootEl = document.getElementById("root");
-const searchBtn = document.querySelector("header div:nth-child(2) button");
-const inputSearch = document.querySelector("inputSearch");
+// const searchBtn = document.querySelector("header div:nth-child(2) button");
+const searchForm = document.querySelector("header div:nth-child(2) form");
+const inputSearch = document.getElementById("inputSearch");
 
 const products = [
   {
@@ -90,10 +91,33 @@ const render = (elToRenderIn, objArr, createCard) => {
 
 render(rootEl, products, createCardEl);
 
-const handleSearchProducts = () => {
-  const searchTerm = inputSearch.value;
-  const filteredArr = products.filter((product) => product.name === searchTerm);
+// const handleSearchProducts = () => {
+//   const searchTerm = inputSearch.value;
+//   const filteredArr = products.filter((product) =>
+//     product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+//   );
+//   render(rootEl, filteredArr, createCardEl);
+// };
+
+// searchBtn.addEventListener("click", handleSearchProducts);
+
+const handleSearchInput = (e) => {
+  const searchTerm = e.target.value;
+  const filteredArr = products.filter((product) =>
+    product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
+  render(rootEl, filteredArr, createCardEl);
+};
+// inputSearch.addEventListener("input", handleSearchInput);
+
+const handleSearchOnSubmit = (e) => {
+  e.preventDefault();
+  console.log(e);
+  const searchTerm = e.target.children[0].value;
+  const filteredArr = products.filter((product) =>
+    product.name.toLowerCase().startsWith(searchTerm.toLowerCase())
+  );
   render(rootEl, filteredArr, createCardEl);
 };
 
-searchBtn.addEventListener("click", handleSearchProducts);
+searchForm.addEventListener("submit", handleSearchOnSubmit);
