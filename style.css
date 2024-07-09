@@ -136,8 +136,13 @@ a {
   margin: 3px;
   padding: 7px;
   background-color: green;
+  cursor: pointer;
   color: white;
   border-radius: 5px;
+}
+
+.card .btn:hover {
+  background-color: rgba(19, 137, 19, 0.656);
 }
 
 .point {
@@ -178,20 +183,28 @@ a {
   background-color: red;
   color: white;
   border-radius: 5px;
-  padding: 7px;
+  padding: 10px;
+  margin: 5px;
+  font-size: 1.5rem;
 }
 
 .modal-btn-remove:hover {
   cursor: pointer;
+  background-color: white;
+  color: red;
 }
 
 .modal-btn-add {
   background-color: green;
   color: white;
   border-radius: 5px;
-  padding: 7px;
+  padding: 10px;
+  margin: 5px;
+  font-size: 1.5rem;
 }
 
 .modal-btn-add:hover {
   cursor: pointer;
+  background-color: white;
+  color: green;
 }
