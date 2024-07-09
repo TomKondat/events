@@ -164,3 +164,34 @@ a {
   background-color: orange;
   color: white;
 }
+
+.row {
+  width: 99%;
+  margin: 2px;
+  padding: 2px;
+  border-radius: 5px;
+  background-color: lightgray;
+  padding: 13px;
+}
+
+.modal-btn-remove {
+  background-color: red;
+  color: white;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.modal-btn-remove:hover {
+  cursor: pointer;
+}
+
+.modal-btn-add {
+  background-color: green;
+  color: white;
+  border-radius: 5px;
+  padding: 7px;
+}
+
+.modal-btn-add:hover {
+  cursor: pointer;
+}

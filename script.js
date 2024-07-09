@@ -4,6 +4,7 @@ const inputSearch = document.getElementById("inputSearch");
 const sortedPrice = document.getElementById("sort");
 const open_modal_btn = document.getElementById("open-modal1");
 const close_btn = document.querySelector(".modal-class-btn");
+const modalEl = document.getElementById("shopping-cart-modal");
 
 const products = [
   {
@@ -80,6 +81,9 @@ const handleAddToCart = (e) => {
       product.quantity++;
       alreadyInCart = true;
     }
+
+    render(modalEl, shoppingCart, createModalEl);
+
     return product;
   });
   if (alreadyInCart) {
@@ -92,6 +96,8 @@ const handleAddToCart = (e) => {
   cartProduct.quantity = 1;
   shoppingCart.push(cartProduct);
   console.log(shoppingCart);
+
+  render(modalEl, shoppingCart, createModalEl);
 };
 
 const createCardEl = (productObj) => {
@@ -114,6 +120,54 @@ const createCardEl = (productObj) => {
   cardEl.append(addTocartBtn);
 
   return cardEl;
+};
+
+const createModalEl = (modalObj) => {
+  const modalEl = document.createElement("div");
+  modalEl.className = "row";
+  modalEl.innerHTML += `<div>
+         <h5 >${modalObj.name}</h5>
+        <p >Price: ${modalObj.price}</p>
+        <p >Quantity: ${modalObj.quantity}</p>
+        <p >Total for this product: ${modalObj.quantity * modalObj.price}</p>
+       </div>`;
+  const buttonRemove = document.createElement("button");
+  buttonRemove.className = "modal-btn-remove";
+  buttonRemove.textContent = "-";
+  buttonRemove.id = modalObj.id;
+  buttonRemove.addEventListener("click", handleRemoveProcut);
+  modalEl.append(buttonRemove);
+
+  const buttonAdd = document.createElement("button");
+  buttonAdd.className = "modal-btn-add";
+  buttonAdd.textContent = "+";
+  buttonAdd.id = modalObj.id;
+  buttonAdd.addEventListener("click", handleAddProduct);
+  modalEl.append(buttonAdd);
+  return modalEl;
+};
+const handleRemoveProcut = (e) => {
+  const id = e.target.id;
+  shoppingCart = shoppingCart.filter((cartProduct) => {
+    if (cartProduct.id === id) {
+      cartProduct.quantity--;
+    }
+    if (cartProduct.quantity > 0) {
+      return cartProduct;
+    }
+  });
+  render(modalEl, shoppingCart, createModalEl);
+};
+
+const handleAddProduct = (e) => {
+  const id = e.target.id;
+  shoppingCart = shoppingCart.map((cartProduct) => {
+    if (cartProduct.id === id) {
+      cartProduct.quantity++;
+    }
+    render(modalEl, shoppingCart, createModalEl);
+    return cartProduct;
+  });
 };
 
 const addContent = (elToAppend, contentElToBeAdded) =>
