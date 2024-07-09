@@ -1,15 +1,66 @@
 @import url("https://fonts.googleapis.com/css2?family=Monoton&display=swap");
+
 * {
   box-sizing: border-box;
 }
+
 img {
   width: 100%;
 }
+
 body {
-  position: relative;
-  /*   height: 100vh; */
-  background-color: aquamarine;
+  margin: 0px;
 }
+.overlay2 {
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.767);
+  position: fixed;
+  z-index: 2;
+  display: none;
+  justify-content: center;
+  align-items: center;
+  animation: fade-in 500ms forwards;
+}
+@keyframes fade-in {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+@keyframes fade-out {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+  }
+}
+
+.modal2 {
+  width: 45vw;
+  height: 50vh;
+  background-color: white;
+  position: absolute;
+  border-radius: 10px;
+  box-shadow: 5px 5px 3px black;
+  animation: zoom-in 500ms linear;
+}
+@keyframes zoom-in {
+  0% {
+    transform: scale(0.25);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.modal2 .modal-class-btn {
+  background-color: red;
+  float: right;
+}
+
 #root {
   padding: 7px;
   width: 70vw;
@@ -17,6 +68,7 @@ body {
   display: flex;
   flex-wrap: wrap;
 }
+
 header {
   min-height: 350px;
   display: flex;
@@ -30,27 +82,33 @@ header {
     rgba(45, 84, 253, 1) 100%
   );
 }
+
 header div:first-child {
   display: flex;
   justify-content: center;
   align-items: center;
 }
+
 header div:nth-child(2) {
   padding: 16px;
 }
+
 header div:nth-child(2) input {
   padding: 16px;
   font-size: 1.5rem;
 }
+
 header div:nth-child(2) button {
   padding: 16px;
   font-size: 1.5rem;
   border-radius: 5px;
   background-color: orange;
 }
+
 header div:nth-child(2) button:hover {
   cursor: pointer;
 }
+
 header h1 {
   font-family: "Monoton", sans-serif;
   color: orange;
@@ -59,6 +117,7 @@ header h1 {
   font-weight: 400;
   font-style: normal;
 }
+
 .card {
   width: 33%;
   margin: 2px;
@@ -67,9 +126,11 @@ header h1 {
   border: 1px solid gray;
   padding: 13px;
 }
+
 a {
   text-decoration: none;
 }
+
 .card .btn {
   width: 30%;
   margin: 3px;
@@ -78,6 +139,7 @@ a {
   color: white;
   border-radius: 5px;
 }
+
 .point {
   width: 50px;
   height: 50px;

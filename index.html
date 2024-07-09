@@ -5,10 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js" defer></script>
     <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+    />
 
     <title>Document</title>
   </head>
   <body>
+    <div class="overlay2">
+      <div class="modal2" id="shopping-cart-modal">
+        <button class="modal-class-btn">x</button>
+      </div>
+    </div>
     <header>
       <div>
         <h1>Shoppi</h1>
@@ -17,6 +26,9 @@
         <form>
           <input type="text" id="inputSearch" placeholder="search here..." />
           <input type="submit" hidden />
+          <button id="open-modal1">
+            <i class="fa fa-shopping-cart" style="font-size: 24px"></i>
+          </button>
         </form>
         <select id="sort">
           <option value="all" disabled hidden>All</option>

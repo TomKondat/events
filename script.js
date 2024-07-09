@@ -2,6 +2,8 @@ const rootEl = document.getElementById("root");
 const searchForm = document.querySelector("header div:nth-child(2) form");
 const inputSearch = document.getElementById("inputSearch");
 const sortedPrice = document.getElementById("sort");
+const open_modal_btn = document.getElementById("open-modal1");
+const close_btn = document.querySelector(".modal-class-btn");
 
 const products = [
   {
@@ -88,7 +90,7 @@ const handleAddToCart = (e) => {
   const product = products.find((product) => product.id === id);
   const cartProduct = { ...product };
   cartProduct.quantity = 1;
-  shoppingCart.push(product);
+  shoppingCart.push(cartProduct);
   console.log(shoppingCart);
 };
 
@@ -144,5 +146,21 @@ const handleSort = (e) => {
   }
 };
 
+const handleShowModal = () => {
+  const overlayModal = document.querySelector(".overlay2");
+  overlayModal.style.display = "flex";
+  overlayModal.style.animation = "fade-in 500ms forwards";
+};
+
+const handleCloseBtn = () => {
+  const overlayModal = document.querySelector(".overlay2");
+  overlayModal.style.animation = "fade-out 500ms forwards";
+  setTimeout(() => {
+    overlayModal.style.display = "none";
+  }, 500);
+};
+
 searchForm.addEventListener("submit", handleSearchOnSubmit);
 sortedPrice.addEventListener("change", handleSort);
+open_modal_btn.addEventListener("click", handleShowModal);
+close_btn.addEventListener("click", handleCloseBtn);
