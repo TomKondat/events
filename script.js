@@ -108,7 +108,7 @@ const createCardEl = (productObj) => {
   imgEl.alt = productObj.name;
   cardEl.append(imgEl);
   cardEl.innerHTML += `<div class="card-body">
-         <h5 class="card-title">${productObj.name}</h5>
+         <p class="card-title">${productObj.name}</p>
         <p class="card-text">Price ${productObj.price}</p>
        </div>`;
 
@@ -121,7 +121,6 @@ const createCardEl = (productObj) => {
 
   return cardEl;
 };
-
 const createModalEl = (modalObj) => {
   const modalEl = document.createElement("div");
   const rowEl = document.createElement("div");
@@ -154,8 +153,12 @@ const createModalEl = (modalObj) => {
   }, 0);
   modalFooter.innerHTML = `
     <p>Total: ${total}$</p>
-  <button class="modal-btn-add">Checkout</button>
   `;
+  const checkoutBtn = document.createElement("button");
+  checkoutBtn.className = "modal-btn-add";
+  checkoutBtn.textContent = "Checkout";
+  checkoutBtn.addEventListener("click", handleCloseBtn);
+  modalFooter.append(checkoutBtn);
 
   return modalEl;
 };
@@ -172,6 +175,13 @@ const handleRemoveProcut = (e) => {
       return cartProduct;
     }
   });
+
+  let total = shoppingCart.reduce((prev, cur) => {
+    return prev + cur.price * 1 * (cur.quantity * 1);
+  }, 0);
+  modalFooter.innerHTML = `
+    <p>Total: ${total}$</p>
+  `;
   render(modalEl, shoppingCart, createModalEl);
 };
 

@@ -221,10 +221,9 @@ a {
 
 #modal-footer {
   display: flex;
-  justify-content: space-between;
-  width: 99%;
+
+  width: inherit;
   border-radius: 5px;
-  min-height: 100px;
   background: linear-gradient(
     38deg,
     rgba(62, 253, 255, 1) 0%,
@@ -233,9 +232,8 @@ a {
   color: black;
   padding: 10px;
   margin-top: 10px;
-  position: sticky;
-  bottom: 0;
 }
+
 p {
   font-size: 1.5rem;
   font-family: Arial, sans-serif;
