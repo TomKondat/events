@@ -152,7 +152,10 @@ const createModalEl = (modalObj) => {
   let total = shoppingCart.reduce((prev, cur) => {
     return prev + cur.price * 1 * (cur.quantity * 1);
   }, 0);
-  modalFooter.innerHTML = `<p>Total: ${total}$</p>`;
+  modalFooter.innerHTML = `
+    <p>Total: ${total}$</p>
+  <button class="modal-btn-add">Checkout</button>
+  `;
 
   return modalEl;
 };

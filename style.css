@@ -188,7 +188,7 @@ a {
   align-items: center;
 }
 .modal-btn-remove {
-  background-color: red;
+  background-color: rgba(255, 0, 0, 0.61);
   color: white;
   border-radius: 5px;
   padding: 15px;
@@ -199,12 +199,12 @@ a {
 
 .modal-btn-remove:hover {
   cursor: pointer;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.578);
   color: red;
 }
 
 .modal-btn-add {
-  background-color: green;
+  background-color: rgba(0, 128, 0, 0.626);
   color: white;
   border-radius: 5px;
   padding: 15px;
@@ -215,13 +215,16 @@ a {
 
 .modal-btn-add:hover {
   cursor: pointer;
-  background-color: white;
+  background-color: rgba(255, 255, 255, 0.603);
   color: green;
 }
 
 #modal-footer {
+  display: flex;
+  justify-content: space-between;
   width: 99%;
   border-radius: 5px;
+  min-height: 100px;
   background: linear-gradient(
     38deg,
     rgba(62, 253, 255, 1) 0%,
@@ -235,6 +238,5 @@ a {
 }
 p {
   font-size: 1.5rem;
-  font-weight: 500;
   font-family: Arial, sans-serif;
 }
