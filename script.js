@@ -87,7 +87,6 @@ const handleAddToCart = (e) => {
     return product;
   });
   if (alreadyInCart) {
-    // console.log(shoppingCart);
     return;
   }
   //fint if exsist
@@ -96,7 +95,6 @@ const handleAddToCart = (e) => {
   cartProduct.quantity = 1;
   shoppingCart.push(cartProduct);
   console.log(shoppingCart);
-
   render(modalEl, shoppingCart, createModalEl);
 };
 //-----------------create elements-----------------------
@@ -124,7 +122,8 @@ const createCardEl = (productObj) => {
 const createModalEl = (modalObj) => {
   const modalEl = document.createElement("div");
   const rowEl = document.createElement("div");
-  rowEl.className = "row";
+  // console.log(`hiiiiii ${shoppingCart.length} `);
+  // rowEl.className = shoppingCart % 2 === 0 ? "row" : "row2";
   rowEl.innerHTML += `<div>
          <p >Product: ${modalObj.name} x${modalObj.quantity}</p>
         <p >Price: ${modalObj.price}$</p>

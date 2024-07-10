@@ -41,7 +41,6 @@ body {
 
 .modal2 {
   width: 65vw;
-  overflow-y: auto;
   height: 85vh;
   background-color: white;
   position: absolute;
@@ -175,10 +174,20 @@ a {
 
 .row {
   width: 99%;
-  margin: 2px;
-  padding: 2px;
+  margin: 5px;
+  padding: 5px;
   border-radius: 5px;
   background-color: rgba(211, 211, 211, 0.5);
+  padding: 13px;
+  display: flex;
+  justify-content: space-between;
+}
+.row2 {
+  width: 99%;
+  margin: 5px;
+  padding: 5px;
+  border-radius: 5px;
+  background-color: rgba(191, 211, 220, 0.937);
   padding: 13px;
   display: flex;
   justify-content: space-between;
@@ -218,11 +227,14 @@ a {
   background-color: rgba(255, 255, 255, 0.603);
   color: green;
 }
-
+#shopping-cart {
+  overflow: auto;
+  height: 85%;
+}
 #modal-footer {
+  align-items: center;
   display: flex;
-
-  width: inherit;
+  justify-content: space-between;
   border-radius: 5px;
   background: linear-gradient(
     38deg,
@@ -230,11 +242,15 @@ a {
     rgba(45, 84, 253, 1) 100%
   );
   color: black;
-  padding: 10px;
+  margin: 5px;
+  padding: 5px;
   margin-top: 10px;
+  width: 99%;
+  height: 10%;
 }
 
 p {
   font-size: 1.5rem;
   font-family: Arial, sans-serif;
+  margin: 0px;
 }
