@@ -60,6 +60,8 @@ body {
 .modal2 .modal-class-btn {
   background-color: red;
   float: right;
+  margin: 5px;
+  padding: 5px;
 }
 
 #root {
@@ -176,17 +178,23 @@ a {
   margin: 2px;
   padding: 2px;
   border-radius: 5px;
-  background-color: lightgray;
+  background-color: rgba(211, 211, 211, 0.5);
   padding: 13px;
+  display: flex;
+  justify-content: space-between;
 }
-
+.modal-btns {
+  display: flex;
+  align-items: center;
+}
 .modal-btn-remove {
   background-color: red;
   color: white;
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
   margin: 5px;
-  font-size: 1.5rem;
+  font-size: larger;
+  border: none;
 }
 
 .modal-btn-remove:hover {
@@ -199,9 +207,10 @@ a {
   background-color: green;
   color: white;
   border-radius: 5px;
-  padding: 10px;
+  padding: 15px;
   margin: 5px;
-  font-size: 1.5rem;
+  font-size: larger;
+  border: none;
 }
 
 .modal-btn-add:hover {
@@ -211,14 +220,21 @@ a {
 }
 
 #modal-footer {
+  width: 99%;
+  border-radius: 5px;
   background: linear-gradient(
     38deg,
     rgba(62, 253, 255, 1) 0%,
     rgba(45, 84, 253, 1) 100%
   );
-  color: white;
-  text-align: center;
+  color: black;
   padding: 10px;
   margin-top: 10px;
   position: sticky;
+  bottom: 0;
+}
+p {
+  font-size: 1.5rem;
+  font-weight: 500;
+  font-family: Arial, sans-serif;
 }

@@ -127,32 +127,32 @@ const createModalEl = (modalObj) => {
   const rowEl = document.createElement("div");
   rowEl.className = "row";
   rowEl.innerHTML += `<div>
-         <h5 >${modalObj.name}</h5>
-        <p >Price: ${modalObj.price}</p>
-        <p >Quantity: ${modalObj.quantity}</p>
-        
+         <p >Product: ${modalObj.name} x${modalObj.quantity}</p>
+        <p >Price: ${modalObj.price}$</p>
        </div>`;
+  const buttonsEl = document.createElement("div");
+  buttonsEl.className = "modal-btns";
 
+  rowEl.append(buttonsEl);
   const buttonRemove = document.createElement("button");
   buttonRemove.className = "modal-btn-remove";
   buttonRemove.textContent = "-";
   buttonRemove.id = modalObj.id;
   buttonRemove.addEventListener("click", handleRemoveProcut);
-  rowEl.append(buttonRemove);
 
   const buttonAdd = document.createElement("button");
   buttonAdd.className = "modal-btn-add";
   buttonAdd.textContent = "+";
   buttonAdd.id = modalObj.id;
   buttonAdd.addEventListener("click", handleAddProduct);
-  rowEl.append(buttonAdd);
 
   modalEl.append(rowEl);
+  buttonsEl.append(buttonRemove, buttonAdd);
 
   let total = shoppingCart.reduce((prev, cur) => {
     return prev + cur.price * 1 * (cur.quantity * 1);
   }, 0);
-  modalFooter.innerHTML = `<h3>Total: ${total}</h3>`;
+  modalFooter.innerHTML = `<p>Total: ${total}$</p>`;
 
   return modalEl;
 };
