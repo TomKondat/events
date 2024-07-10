@@ -229,7 +229,8 @@ a {
 }
 #shopping-cart {
   overflow: auto;
-  height: 85%;
+  height: 80%;
+  width: 100%;
 }
 #modal-footer {
   align-items: center;

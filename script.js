@@ -119,11 +119,13 @@ const createCardEl = (productObj) => {
 
   return cardEl;
 };
+let rowCounter = 0;
 const createModalEl = (modalObj) => {
   const modalEl = document.createElement("div");
   const rowEl = document.createElement("div");
-  // console.log(`hiiiiii ${shoppingCart.length} `);
-  // rowEl.className = shoppingCart % 2 === 0 ? "row" : "row2";
+  rowCounter++;
+  console.log(rowCounter);
+  rowEl.className = rowCounter % 2 === 0 ? "row" : "row2";
   rowEl.innerHTML += `<div>
          <p >Product: ${modalObj.name} x${modalObj.quantity}</p>
         <p >Price: ${modalObj.price}$</p>
