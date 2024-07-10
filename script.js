@@ -4,7 +4,8 @@ const inputSearch = document.getElementById("inputSearch");
 const sortedPrice = document.getElementById("sort");
 const open_modal_btn = document.getElementById("open-modal1");
 const close_btn = document.querySelector(".modal-class-btn");
-const modalEl = document.getElementById("shopping-cart-modal");
+const modalEl = document.getElementById("shopping-cart");
+const modalFooter = document.getElementById("modal-footer");
 
 const products = [
   {
@@ -81,7 +82,6 @@ const handleAddToCart = (e) => {
       product.quantity++;
       alreadyInCart = true;
     }
-
     render(modalEl, shoppingCart, createModalEl);
 
     return product;
@@ -99,7 +99,7 @@ const handleAddToCart = (e) => {
 
   render(modalEl, shoppingCart, createModalEl);
 };
-
+//-----------------create elements-----------------------
 const createCardEl = (productObj) => {
   const cardEl = document.createElement("div");
   cardEl.className = "card";
@@ -124,28 +124,41 @@ const createCardEl = (productObj) => {
 
 const createModalEl = (modalObj) => {
   const modalEl = document.createElement("div");
-  modalEl.className = "row";
-  modalEl.innerHTML += `<div>
+  const rowEl = document.createElement("div");
+  rowEl.className = "row";
+  rowEl.innerHTML += `<div>
          <h5 >${modalObj.name}</h5>
         <p >Price: ${modalObj.price}</p>
         <p >Quantity: ${modalObj.quantity}</p>
-        <p >Total for this product: ${modalObj.quantity * modalObj.price}</p>
+        
        </div>`;
+
   const buttonRemove = document.createElement("button");
   buttonRemove.className = "modal-btn-remove";
   buttonRemove.textContent = "-";
   buttonRemove.id = modalObj.id;
   buttonRemove.addEventListener("click", handleRemoveProcut);
-  modalEl.append(buttonRemove);
+  rowEl.append(buttonRemove);
 
   const buttonAdd = document.createElement("button");
   buttonAdd.className = "modal-btn-add";
   buttonAdd.textContent = "+";
   buttonAdd.id = modalObj.id;
   buttonAdd.addEventListener("click", handleAddProduct);
-  modalEl.append(buttonAdd);
+  rowEl.append(buttonAdd);
+
+  modalEl.append(rowEl);
+
+  let total = shoppingCart.reduce((prev, cur) => {
+    return prev + cur.price * 1 * (cur.quantity * 1);
+  }, 0);
+  modalFooter.innerHTML = `<h3>Total: ${total}</h3>`;
+
   return modalEl;
 };
+
+//----------------handlers-----------------------
+
 const handleRemoveProcut = (e) => {
   const id = e.target.id;
   shoppingCart = shoppingCart.filter((cartProduct) => {
@@ -169,15 +182,6 @@ const handleAddProduct = (e) => {
     return cartProduct;
   });
 };
-
-const addContent = (elToAppend, contentElToBeAdded) =>
-  elToAppend.append(contentElToBeAdded);
-
-const render = (elToRenderIn, objArr, createCard) => {
-  elToRenderIn.innerHTML = "";
-  objArr.map((el) => addContent(elToRenderIn, createCard(el)));
-};
-render(rootEl, products, createCardEl);
 
 const handleSearchOnSubmit = (e) => {
   e.preventDefault();
@@ -214,6 +218,16 @@ const handleCloseBtn = () => {
   }, 500);
 };
 
+const addContent = (elToAppend, contentElToBeAdded) =>
+  elToAppend.append(contentElToBeAdded);
+
+const render = (elToRenderIn, objArr, createCard) => {
+  elToRenderIn.innerHTML = "";
+  objArr.map((el) => addContent(elToRenderIn, createCard(el)));
+};
+render(rootEl, products, createCardEl);
+
+//-----------------listeners---------------------------
 searchForm.addEventListener("submit", handleSearchOnSubmit);
 sortedPrice.addEventListener("change", handleSort);
 open_modal_btn.addEventListener("click", handleShowModal);

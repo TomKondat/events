@@ -40,8 +40,9 @@ body {
 }
 
 .modal2 {
-  width: 45vw;
-  height: 50vh;
+  width: 65vw;
+  overflow-y: auto;
+  height: 85vh;
   background-color: white;
   position: absolute;
   border-radius: 10px;
@@ -207,4 +208,17 @@ a {
   cursor: pointer;
   background-color: white;
   color: green;
+}
+
+#modal-footer {
+  background: linear-gradient(
+    38deg,
+    rgba(62, 253, 255, 1) 0%,
+    rgba(45, 84, 253, 1) 100%
+  );
+  color: white;
+  text-align: center;
+  padding: 10px;
+  margin-top: 10px;
+  position: sticky;
 }
